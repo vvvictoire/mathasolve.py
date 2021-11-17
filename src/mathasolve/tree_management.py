@@ -1,6 +1,7 @@
 """Builds a tree"""
-from itertools import combinations_with_replacement, permutations, product
+from itertools import permutations, product
 from typing import Callable, Iterable, Tuple
+
 
 def set_of_permutations(_list: Iterable) -> list[Tuple]:
     """Return all permutations of a list"""
@@ -20,6 +21,8 @@ def rpn(operands: list, operators: list[Callable]):
     """Does a series of operations on the operands"""
     if not len(operands) == len(operators) + 1:
         raise IndexError
+    operands = list(operands)
+    operators = list(operators)
     while operators:
         first_operand = operands.pop(0)
         operands[0] = operators.pop(0)(first_operand, operands[0])
